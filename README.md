@@ -1,6 +1,8 @@
-# Ansible role: grid
+# grid
 
-Common installation of repositories, certificates and voms for WLCG/LCG site.
+[![pipeline status](https://gitlab.cern.ch/hephyvienna/ansible/role-grid/badges/master/pipeline.svg)](https://gitlab.cern.ch/hephyvienna/ansible/role-grid/commits/master)
+
+Ansible role for installation of grid repositories, certificates and voms definitions for WLCG/LCG site.
 
 
 ## Requirements
