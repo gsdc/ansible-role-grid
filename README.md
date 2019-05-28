@@ -2,6 +2,8 @@
 
 [![pipeline status](https://gitlab.cern.ch/hephyvienna/ansible/role-grid/badges/master/pipeline.svg)](https://gitlab.cern.ch/hephyvienna/ansible/role-grid/commits/master)
 
+[![ansible role](https://img.shields.io/ansible/role/40775.svg)](https://galaxy.ansible.com/dietrichliko/grid)
+
 Ansible role for installation of grid repositories, certificates and voms definitions for WLCG/LCG site.
 
 
