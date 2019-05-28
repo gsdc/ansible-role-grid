@@ -1,0 +1,23 @@
+---
+# defaults file for hephyvienna.role-grid
+grid_enable_repo: true
+grid_umd_version: 4
+grid_umd_repo_priority: 20
+grid_umd_repo_rpmgpgkeys:
+  - RPM-GPG-KEY-emi
+  - UMD-RPM-PGP-KEY
+  - RPM-GPG-KEY-QCG
+  - RPM-GPG-KEY-nordugrid
+  - 0608B895.txt
+grid_cvmfs: false
+grid_ca_polices_pkgs:
+  - ca-policy-egi-core
+  - ca-policy-lcg
+grid_install_fetchcrl: true
+grid_fetchcrl_options: []
+grid_install_dummy_ca_policy: true
+grid_vos: []
+grid_security_dir: /etc/grid-security
+grid_vomses_dir: /etc/vomses
+grid_host_certificate: {}
+grid_voinfo_url: http://cclavoisier01.in2p3.fr:8080/lavoisier/voVoms?accept=json

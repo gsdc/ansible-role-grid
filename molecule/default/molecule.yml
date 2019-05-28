@@ -1,0 +1,25 @@
+---
+dependency:
+  name: galaxy
+  # workaround for problem on mac
+  options:
+    ignore-certs: True
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: instance
+    image: ${MOLECULE_IMAGE:-'centos:7'}
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+verifier:
+  name: testinfra
+  options:
+    # another workaround for python issue of molecule
+    W: ignore::DeprecationWarning
+    junit-xml: ../../default_junit.xml
+  lint:
+    name: flake8

@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: geerlingguy.repo-epel
+    - role: hephyvienna.grid
+      vars:
+        grid_vos:
+          - cms
+          - alice
+          - belle
+        grid_host_certificate:
+          cert: files/dummy.crt
+          key: files/dummy.key
