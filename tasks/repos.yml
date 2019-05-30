@@ -25,6 +25,8 @@
     description: "UMD{{ grid_umd_version }} updates repository"
     baseurl: "http://repository.egi.eu/sw/production/umd/{{ grid_umd_version }}/{{ os_name }}/$basearch/updates"
     enabled: true
+    exclude: "{{ grid_umd_repo_exclude | join(' ') }}"
+    includepkgs: "{{ grid_umd_repo_includepkgs | join(' ') }}"
     gpgcheck: true
     gpgkey: >-
       {% for k in grid_umd_repo_rpmgpgkeys -%}
