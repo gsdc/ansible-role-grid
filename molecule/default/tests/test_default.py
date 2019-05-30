@@ -25,7 +25,7 @@ def test_files(host, name):
     ('fetch-crl', '3.0.'),
 ])
 def test_packages(host, name, version):
-    pkg = host.packages('/etc/hosts')
+    pkg = host.package(name)
 
     assert pkg.is_installed
     assert pkg.version.startswith(version)
