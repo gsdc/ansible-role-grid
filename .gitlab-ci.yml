@@ -1,5 +1,5 @@
 ---
-molecule:centos6:
+centos6:
   tags:
     - dood
   image: gitlab-registry.cern.ch/hephyvienna/docker/centos7-molecule:latest
@@ -22,7 +22,7 @@ molecule:centos6:
       - default_junit.xml
       - default_junit.html
 
-molecule:centos7:
+centos7:
   tags:
     - dood
   image: gitlab-registry.cern.ch/hephyvienna/docker/centos7-molecule:latest
