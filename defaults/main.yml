@@ -9,6 +9,8 @@ grid_umd_repo_rpmgpgkeys:
   - RPM-GPG-KEY-QCG
   - RPM-GPG-KEY-nordugrid
   - 0608B895.txt
+grid_umd_repo_exclude: []
+grid_umd_repo_includepkgs: []
 grid_cvmfs: false
 grid_ca_polices_pkgs:
   - ca-policy-egi-core

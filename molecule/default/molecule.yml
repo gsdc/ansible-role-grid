@@ -1,7 +1,7 @@
 ---
 dependency:
   name: galaxy
-  # workaround for problem on mac
+  # FIXME: workaround for problem on mac
   options:
     ignore-certs: True
 driver:
@@ -18,7 +18,7 @@ provisioner:
 verifier:
   name: testinfra
   options:
-    # another workaround for python issue of molecule
+    # FIXME: another workaround for python issue of molecule
     W: ignore::DeprecationWarning
     junit-xml: ../../default_junit.xml
   lint:

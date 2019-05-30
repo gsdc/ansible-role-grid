@@ -1,10 +1,9 @@
 # grid
 
-[![pipeline status](https://gitlab.cern.ch/hephyvienna/ansible/role-grid/badges/master/pipeline.svg)](https://gitlab.cern.ch/hephyvienna/ansible/role-grid/commits/master) 
+[![pipeline status](https://gitlab.cern.ch/hephyvienna/ansible/role-grid/badges/master/pipeline.svg)](https://gitlab.cern.ch/hephyvienna/ansible/role-grid/commits/master)
 [![galaxy](https://img.shields.io/badge/galaxy-dietrichliko.grid-40775.svg?logo=galaxy)](https://galaxy.ansible.com/dietrichliko/grid)
 
 Ansible role for installation of grid repositories, certificates and voms definitions for WLCG/LCG site.
-
 
 ## Requirements
 
@@ -24,6 +23,14 @@ including [yum priorties](https://wiki.centos.org/PackageManagement/Yum/Prioriti
 
 UMD version of the repository. Its most likely 4.
 
+    grid_umd_exclude: []
+
+List of packages to exclude from updates or installs.
+
+    grid_umd_includepkgs: []
+
+List of packages you want to only use from the UMD repository.
+
     grid_cvmfs: false
 
 CA policies can be installed or used from the CVMFS repository grid.cern.ch
@@ -40,7 +47,7 @@ fetch-crl is only installed when IGTF trustanchors are requested.
 
     grid_fetchcrl_options: []
 
-Following options can be changed from their default value. Details see [Nikhef Wiki](https://wiki.nikhef.nl/grid/FetchCRL3)
+Options are passed as a hash. Following keys are possible. Details see [Nikhef Wiki](https://wiki.nikhef.nl/grid/FetchCRL3)
 -   agingtolerance: 24
 -   nosymlinks: true
 -   nowarnings: true
@@ -50,17 +57,20 @@ Following options can be changed from their default value. Details see [Nikhef W
 -   parallelism: 4
 -   logmode: syslog
 
+
     grid_install_dummy_ca_policy: true
 
 In case no trust anchors have been installed a dummy package [empty-ca-policy](https://copr.fedorainfracloud.org/coprs/dliko/empty-ca-policy/)is installed to provide the rpm dependencies. It creates also a symbolic link to the certificates on CVMFS
 
     grid_vos: []
 
-A list of VOs to be configured. The information on the VOs is extraced from
+A list of VOs to be configured. The detail of the configuration is
+read from EGI.
 
     grid_voinfo_url: http://cclavoisier01.in2p3.fr:8080/lavoisier/voVoms?accept=json
 
-URL to retrieve the information on the VOs.
+URL to retrieve the information on the VOs. Updating the VO Info is
+performed offline and the new info has to be added to the repository,
 
     grid_install_voms_client: false
 
@@ -70,7 +80,7 @@ Install VOMS client packages. Usually not required.
       - voms-clients-cpp
       - voms-clients-java
 
-VOMS client packages to be installed
+VOMS client packages to be installed.
 
     grid_host_certificate: {}
 
