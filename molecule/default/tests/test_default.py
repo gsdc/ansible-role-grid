@@ -14,7 +14,7 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     '/etc/grid-security/vomsdir/cms/lcg-voms2.cern.ch.lsc',
     '/etc/yum.repos.d/UMD-4-updates.repo'
 ])
-def test_files(host,name):
+def test_files(host, name):
     f = host.file('/etc/hosts')
 
     assert f.exists
@@ -24,7 +24,7 @@ def test_files(host,name):
     ('ca-policy-lcg', '1.'),
     ('fetch-crl', '3.0.'),
 ])
-def test_packages(host,name,version):
+def test_packages(host, name, version):
     pkg = host.packages('/etc/hosts')
 
     assert pkg.is_installed
