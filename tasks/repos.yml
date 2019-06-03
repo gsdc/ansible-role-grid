@@ -18,6 +18,7 @@
         file:///etc/pki/rpm-gpg/{{ k }}
       {%- endfor %}
     priority: "{{ grid_umd_repo_priority }}"
+    protect: true
 
 - name: Install UMD updates repository
   yum_repository:
@@ -33,6 +34,8 @@
         file:///etc/pki/rpm-gpg/{{ k }}
       {%- endfor %}
     priority: "{{ grid_umd_repo_priority }}"
+    protect: true
+
 
 - name: Copy gpgkeys
   copy:
