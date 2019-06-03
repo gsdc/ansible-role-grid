@@ -48,3 +48,23 @@
     state: present
     key: "/etc/pki/rpm-gpg/{{ item }}"
   loop: "{{ grid_umd_repo_rpmgpgkeys }}"
+
+- name: Change priority of epel repo
+  ini_file:
+    path: "{{ item.name }}.repo"
+    section: "{{ item.section }}"
+    option: priority
+    value: "{{ grid_umd_epel_priority }}"
+  loop:
+    - name: epel
+      section: epel
+    - name: epel
+      section: epel-debuginfo
+    - name: epel
+      section: epel-source
+    - name: epel-testing
+      section: epel-testing
+    - name: epel-testing
+      section: epel-testing-debuginfo
+    - name: epel-testing
+      section: epel-testing-source
