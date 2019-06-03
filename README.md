@@ -5,6 +5,8 @@
 
 Ansible role for installation of grid repositories, certificates and voms definitions for WLCG/LCG site.
 
+Inspired by the [Ansible Role](https://github.com/EGI-Foundation/ansible-role-umd) 
+
 ## Requirements
 
 -   EL6/7
