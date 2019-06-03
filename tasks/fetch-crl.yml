@@ -14,3 +14,4 @@
   command: /usr/sbin/fetch-crl
   args:
     creates: /etc/grid-security/certificates/5168735f.r0
+  ignore-errors: true
