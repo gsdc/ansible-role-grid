@@ -51,7 +51,7 @@
 
 - name: Change priority of epel repo
   ini_file:
-    path: "{{ item.name }}.repo"
+    path: "/etc/yum.repos.d/{{ item.name }}.repo"
     section: "{{ item.section }}"
     option: priority
     value: "{{ grid_umd_epel_priority }}"
