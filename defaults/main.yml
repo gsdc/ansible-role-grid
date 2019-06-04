@@ -3,7 +3,6 @@
 grid_enable_repo: true
 grid_umd_version: 4
 grid_umd_repo_priority: 10
-grid_umd_epel_priority: 20
 grid_umd_repo_rpmgpgkeys:
   - RPM-GPG-KEY-emi
   - UMD-RPM-PGP-KEY
