@@ -1,4 +1,4 @@
-# grid [![Build Status](https://travis-ci.org/hephyvienna/ansible-role-grid.svg?branch=master)](https://travis-ci.org/hephyvienna/ansible-role-grid) ![Ansible Role](https://img.shields.io/ansible/role/XXX.svg)
+# grid [![Build Status](https://travis-ci.org/hephyvienna/ansible-role-grid.svg?branch=master)](https://travis-ci.org/hephyvienna/ansible-role-grid) ![Ansible Role](https://img.shields.io/ansible/role/40974.svg)
 
 Ansible role for installation of grid repositories, certificates and voms definitions for WLCG/LCG site.
 
