@@ -9,15 +9,15 @@
 
 - name: Install ca_policy
   include_tasks: ca_policy.yml
-  when: not grid_cvmfs
+  when: not grid_ca_policies_cvmfs
 
 - name: Install fetch-crl
   include_tasks: fetch-crl.yml
-  when: not grid_cvmfs and grid_install_fetchcrl
+  when: not grid_ca_policies_cvmfs and grid_install_fetchcrl
 
 - name: Install dummy CA policies
   include_tasks: dummy_ca_policy.yml
-  when: grid_cvmfs and grid_install_dummy_ca_policy
+  when: grid_ca_policies_cvmfs and grid_install_dummy_ca_policy
 
 - name: Install VOMS
   include_tasks: voms.yml

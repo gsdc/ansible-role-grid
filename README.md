@@ -1,4 +1,4 @@
-# grid [![Build Status](https://travis-ci.org/hephyvienna/ansible-role-grid.svg?branch=master)](https://travis-ci.org/hephyvienna/ansible-role-grid) ![Ansible Role](https://img.shields.io/ansible/role/40974.svg)
+# grid [![Build Status](https://travis-ci.org/hephyvienna/ansible-role-grid.svg?branch=master)](https://travis-ci.org/hephyvienna/ansible-role-grid) [![Ansible Role](https://img.shields.io/ansible/role/40974.svg)](https://galaxy.ansible.com/hephyvienna/grid)
 
 Ansible role for installation of grid repositories, certificates and voms definitions for WLCG/LCG site.
 
@@ -30,7 +30,7 @@ List of packages to exclude from updates or installs.
 
 List of packages you want to only use from the UMD repository.
 
-    grid_cvmfs: false
+    grid_ca_policies_cvmfs: false
 
 CA policies can be installed or used from the CVMFS repository grid.cern.ch
 
@@ -46,7 +46,7 @@ fetch-crl is only installed when IGTF trustanchors are requested.
 
     grid_fetchcrl_options: []
 
-Options are passed as a hash. Following keys are possible. Details see [Nikhef Wiki](https://wiki.nikhef.nl/grid/FetchCRL3)
+Options are passed as a hash. Following keys are possible.
 -   agingtolerance: 24
 -   nosymlinks: true
 -   nowarnings: true
@@ -56,15 +56,18 @@ Options are passed as a hash. Following keys are possible. Details see [Nikhef W
 -   parallelism: 4
 -   logmode: syslog
 
+Details for the oarameters see [Nikhef Wiki](https://wiki.nikhef.nl/grid/FetchCRL3)
 
     grid_install_dummy_ca_policy: true
 
-In case no trust anchors have been installed a dummy package [empty-ca-policy](https://copr.fedorainfracloud.org/coprs/dliko/empty-ca-policy/)is installed to provide the rpm dependencies. It creates also a symbolic link to the certificates on CVMFS
+When the trust anchors are talen from _cvmfs_ a dummy package [empty-ca-policy](https://copr.fedorainfracloud.org/coprs/dliko/empty-ca-policy/)is installed to satisfy the
+rpm dependencies of other packages. A /etc/grid-security/certificates is linked
+to the CVMFS area.
 
     grid_vos: []
 
-A list of VOs to be configured. The detail of the configuration is
-read from EGI.
+A list of Virtual Organisations (VOs) to be configured. The detail of the configuration is
+taken from the [EGI Operation Portal](https://operations-portal.egi.eu/)
 
     grid_voinfo_url: http://cclavoisier01.in2p3.fr:8080/lavoisier/voVoms?accept=json
 
@@ -73,7 +76,8 @@ performed offline and the new info has to be added to the repository,
 
     grid_install_voms_client: false
 
-Install VOMS client packages. Usually not required.
+Install VOMS client packages. Usually not required, as packages will be
+requested by other installations
 
     grid_voms_client_pkgs:
       - voms-clients-cpp
@@ -101,8 +105,8 @@ Configuration for a server without CVMFS
               - alice
               - belle
             grid_host_certificate:
-              cert: <path to cert>.crt
-              key: <path to key>.key
+              cert: server.crt
+              key: server.key
         - name: hephyvienna.argus
 
 Configuration for a worker node with CVMFS
@@ -115,11 +119,11 @@ Configuration for a worker node with CVMFS
               - cms
               - alice
               - belle
-            grid_cvmfs: true
+            grid_ca_policies_cvmfs: true
         - name: hephyvienna.cvmfs
-        - name: hephyvienna.grid-client
+        - name: hephyvienna.grid-worker
           vars:
-            grid_client_role: wn
+            grid_worker_role: wn
 
 ## License
 
