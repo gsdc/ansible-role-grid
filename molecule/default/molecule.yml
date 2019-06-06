@@ -20,6 +20,6 @@ verifier:
   options:
     # FIXME: another workaround for python issue of molecule
     W: ignore::DeprecationWarning
-    junit-xml: ../../default_junit.xml
+    junit-xml: junit.xml
   lint:
     name: flake8
