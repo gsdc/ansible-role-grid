@@ -10,5 +10,6 @@
           - alice
           - belle
         grid_host_certificate:
-          cert: files/dummy.crt
-          key: files/dummy.key
+          cert: files/instance.crt
+          key: files/instance.key
+          ca: files/rootCA.crt

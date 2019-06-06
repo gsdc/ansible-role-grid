@@ -29,3 +29,9 @@ def test_packages(host, name, version):
 
     assert pkg.is_installed
     assert pkg.version.startswith(version)
+
+
+def test_verify_ca(host):
+    cmd = host.run('/usr/bin/openssl verify -CApath /etc/grid-security/certificates /etc/grid-security/hostcert.pem')  # noqa: E501
+
+    assert cmd.rc == 0
