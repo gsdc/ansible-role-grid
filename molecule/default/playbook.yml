@@ -9,4 +9,5 @@
           - cms
           - alice
           - belle
-        grid_enable_dummy_ca: hostcert
+        grid_enable_dummy_ca: true
+        grid_enabel_dummy_hostcert: true

@@ -24,6 +24,7 @@ grid_vomses_dir: /etc/vomses
 grid_host_certificate: {}
 grid_voinfo_url: http://cclavoisier01.in2p3.fr:8080/lavoisier/voVoms?accept=json
 grid_enable_dummy_ca: false
+grid_enable_dummy_hostcert: false
 grid_dummy_ca:
   crt: DummyCA.crt
   key: DummyCA.key

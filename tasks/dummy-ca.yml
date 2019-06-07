@@ -3,14 +3,12 @@
   copy:
     src: "{{ grid_dummy_ca.crt }}"
     dest: /etc/grid-security/certificates/DummyCA.crt
-  when: grid_enable_dummy_ca | bool
 
 - name: Create link
   file:
     src: DummyCA.crt
     dest: "/etc/grid-security/certificates/{{ grid_dummy_ca.hash }}.0"
     state: link
-  when: grid_enable_dummy_ca | bool
 
 - name: Generate dummy hostcertificate
   block:
@@ -43,4 +41,4 @@
       args:
         creates: /etc/grid-securiy/hostcert.pem
 
-  when: grid_dummy_ca == 'hostcert'
+  when: grid_enable_dummy_hostcert

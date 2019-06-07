@@ -28,4 +28,4 @@
 
 - name: Install dummy CA
   include_tasks: dummy-ca.yml
-  when: grid_dummy_ca | length > 0
+  when: grid_enable_dummy_ca
