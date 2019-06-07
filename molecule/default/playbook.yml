@@ -9,7 +9,4 @@
           - cms
           - alice
           - belle
-        grid_host_certificate:
-          cert: files/instance.crt
-          key: files/instance.key
-          ca: files/rootCA.crt
+        grid_enable_dummy_ca: hostcert

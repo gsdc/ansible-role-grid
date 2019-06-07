@@ -21,8 +21,9 @@
         mode: 0400
 
     - name: Generate privat key
-      command: "openssl genrsa -out /etc/grid-security/hostkey.pem 2048"
-      creates: /etc/grid-security/hostkey.pem
+      command: openssl genrsa -out /etc/grid-security/hostkey.pem 2048
+      args:
+        creates: /etc/grid-security/hostkey.pem
 
     - name: Generate certificate request
       command: >
@@ -30,7 +31,8 @@
         -key /etc/grid-security/hostkey.pem
         -subj "{{ grid_dummy_ca.cn + ansible_fqdn }}"
         -out /etc/grid-security/hostcert.csr
-      creates: /etc/grid-security/hostcert.csr
+      args:
+        creates: /etc/grid-security/hostcert.csr
 
     - name: Sign the certificate request
       command: >
@@ -38,6 +40,7 @@
         -CA /etc/grid-security/certificates/DummyCA.crt
         -CAkey /etc/grid-security/private_keys/DummyCA.key
         /etc/grid-securiy/hostcert.pem -sha256
-      creates: /etc/grid-securiy/hostcert.pem
+      args:
+        creates: /etc/grid-securiy/hostcert.pem
 
   when: grid_dummy_ca == 'hostcert'

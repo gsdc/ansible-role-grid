@@ -2,7 +2,7 @@
 
 Ansible role for installation of grid repositories, certificates and voms definitions for WLCG/LCG site.
 
-Inspired by the [Ansible Role UMD](https://github.com/EGI-Foundation/ansible-role-umd)
+Inspired by the [Ansible Role UMD](https://github.com/EGI-Foundation/ansible-role-umd) by EGI-Foundation.
 
 ## Requirements
 
@@ -94,14 +94,14 @@ Install host certificate. The certificates is provided as hash
 
     grid_enable_dummy_ca: false | true | hostcert
 
-Install a insecure dummy ca certificate for CI. By _hostcert_ in addition a dummy host certificate will be installed. ___Not to be used in production__
+Install a insecure dummy ca certificate for CI. By _hostcert_ in addition a dummy host certificate will be installed. __Not to be used in production__
 
     grid_dummy_ca:
       cert: DummyCA.crt
       key: DummyCA.key
       hash: be034f91
 
-Dummy CA distributed with the role.
+Dummy CA distributed with the role. Could be customised.
 
 ## Example Playbook
 

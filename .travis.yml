@@ -6,8 +6,8 @@ env:
   global:
     - ROLE_NAME: grid
   matrix:
-    - MOLECULE_DISTRO: centos7
-    - MOLECULE_DISTRO: centos6
+    - MOLECULE_DISTRO: centos:7
+    - MOLECULE_DISTRO: centos:6
 
 install:
   # FIXME molecule problem with 2.8 version
