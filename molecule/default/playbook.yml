@@ -10,4 +10,4 @@
           - alice
           - belle
         grid_enable_dummy_ca: true
-        grid_enabel_dummy_hostcert: true
+        grid_enable_dummy_hostcert: true
