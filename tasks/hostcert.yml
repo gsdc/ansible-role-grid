@@ -10,25 +10,3 @@
     src: "{{ grid_host_certificate.key }}"
     dest: "{{ grid_security_dir }}/hostkey.pem"
     mode: 0400
-
-- name: Install CA
-  block:
-
-    - name: Copy CA certificate
-      copy:
-        src: "{{ grid_host_certificate.ca }}"
-        dest: "{{ grid_security_dir + '/certificates/' + grid_host_certificate.ca | basename }}"
-      register: grid_cacopy
-
-    - name: Get certificate hash
-      command: "/usr/bin/openssl x509 -noout -hash -in {{ grid_cacopy.dest }}"
-      register: grid_cahash
-      changed_when: false
-
-    - name: Create link
-      file:
-        src: "{{ grid_host_certificate.ca | basename }}"
-        dest: "{{ grid_security_dir + '/certificates/' + grid_cahash.stdout + '.0' }}"
-        state: link
-
-  when: grid_host_certificate.ca is defined

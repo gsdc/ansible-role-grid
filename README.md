@@ -56,13 +56,13 @@ Options are passed as a hash. Following keys are possible.
 -   parallelism: 4
 -   logmode: syslog
 
-Details for the oarameters see [Nikhef Wiki](https://wiki.nikhef.nl/grid/FetchCRL3)
+Details for the parameters see [Nikhef Wiki](https://wiki.nikhef.nl/grid/FetchCRL3)
 
-    grid_install_dummy_ca_policy: true
+    grid_install_empty_ca_policy: true
 
-When the trust anchors are talen from _cvmfs_ a dummy package [empty-ca-policy](https://copr.fedorainfracloud.org/coprs/dliko/empty-ca-policy/)is installed to satisfy the
-rpm dependencies of other packages. A /etc/grid-security/certificates is linked
-to the CVMFS area.
+When the trust anchors are taken from _cvmfs_ an empty ca package [empty-ca-policy](https://copr.fedorainfracloud.org/coprs/dliko/empty-ca-policy/) is installed to satisfy the
+rpm dependencies of other packages. A link is enabeling
+the CA packages from cvmfs.
 
     grid_vos: []
 
@@ -91,6 +91,17 @@ Install host certificate. The certificates is provided as hash
 -   cert: path to host certificate
 -   key: path to private host key. It should be secured with ansible-vault
 
+
+    grid_enable_dummy_ca: false | true | hostcert
+
+Install a insecure dummy ca certificate for CI. By _hostcert_ in addition a dummy host certificate will be installed. ___Not to be used in production__
+
+    grid_dummy_ca:
+      cert: DummyCA.crt
+      key: DummyCA.key
+      hash: be034f91
+
+Dummy CA distributed with the role.
 
 ## Example Playbook
 

@@ -1,7 +1,7 @@
 ---
 - name: Install Copr repository
   yum_repository:
-    name: dlik-empty-ca-policy
+    name: dliko-empty-ca-policy
     description: Copr repo for empty-ca-policy owned by dliko
     baseurl: "https://copr-be.cloud.fedoraproject.org/results/dliko/empty-ca-policy/epel-{{ ansible_distribution_major_version }}-$basearch/"
     skip_if_unavailable: true

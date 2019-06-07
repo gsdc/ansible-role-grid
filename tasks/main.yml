@@ -8,15 +8,15 @@
   when: grid_enable_repo
 
 - name: Install ca_policy
-  include_tasks: ca_policy.yml
+  include_tasks: ca-policy.yml
   when: not grid_ca_policies_cvmfs
 
 - name: Install fetch-crl
   include_tasks: fetch-crl.yml
   when: not grid_ca_policies_cvmfs and grid_install_fetchcrl
 
-- name: Install dummy CA policies
-  include_tasks: dummy_ca_policy.yml
+- name: Install empty CA policies
+  include_tasks: empty-ca-policy.yml
   when: grid_ca_policies_cvmfs and grid_install_dummy_ca_policy
 
 - name: Install VOMS
@@ -25,3 +25,7 @@
 - name: Install host certificate
   include_tasks: hostcert.yml
   when: grid_host_certificate | length > 0
+
+- name: Install dummy CA
+  include_tasks: dummy-ca.yml
+  when: grid_dummy_ca | length > 0
