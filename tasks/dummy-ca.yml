@@ -19,7 +19,7 @@
         dest: /etc/grid-security/certificates/DummyCA.key
         mode: 0400
 
-    - name: Generate privat key
+    - name: Generate private key
       command: openssl genrsa -out /etc/grid-security/hostkey.pem 2048
       args:
         creates: /etc/grid-security/hostkey.pem
@@ -41,6 +41,6 @@
         -out /etc/grid-security/hostcert.pem -sha256
         -set_serial {{ 1000000 | random(seed=inventory_hostname) }}
       args:
-        creates: /etc/grid-securiy/hostcert.pem
+        creates: /etc/grid-security/hostcert.pem
 
   when: grid_enable_dummy_hostcert
