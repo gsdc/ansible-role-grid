@@ -1,9 +1,9 @@
 ---
 dependency:
   name: galaxy
-  # FIXME: workaround for problem on mac
+  # FIXME for MacOSX
   options:
-    ignore-certs: True
+    ignore-certs: true
 driver:
   name: docker
 lint:
