@@ -17,12 +17,17 @@
       copy:
         src: "{{ grid_dummy_ca.key }}"
         dest: /etc/grid-security/certificates/DummyCA.key
-        mode: 0400
+        mode: 0600
 
     - name: Generate private key
       command: openssl genrsa -out /etc/grid-security/hostkey.pem 2048
       args:
         creates: /etc/grid-security/hostkey.pem
+
+    - name: Set the mode of the private key
+      file:
+        path: /etc/grid-security/hostkey.pem
+        mode: 0644
 
     - name: Generate certificate request
       command: >
