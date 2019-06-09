@@ -92,9 +92,13 @@ Install host certificate. The certificates is provided as hash
 -   key: path to private host key. It should be secured with ansible-vault
 
 
-    grid_enable_dummy_ca: false | true | hostcert
+    grid_enable_dummy_ca: false | true
 
-Install a insecure dummy ca certificate for CI. By _hostcert_ in addition a dummy host certificate will be installed. __Not to be used in production__
+Install an insecure dummy ca certificate for CI.  __Not to be used in production__
+
+    grid_enable_dummy_hostcert: false | true
+
+Install a dummy hostcertificate for CI.  __Not to be used in production__
 
     grid_dummy_ca:
       cert: DummyCA.crt
