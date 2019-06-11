@@ -13,10 +13,16 @@
 - name: Generate dummy hostcertificate
   block:
 
+    - name: Create private dir
+      file:
+        path: /etc/grid-security/private
+        state: directory
+        mode: 0600
+
     - name: Copy CA key
       copy:
         src: "{{ grid_dummy_ca.key }}"
-        dest: /etc/grid-security/certificates/DummyCA.key
+        dest: /etc/grid-security/private/DummyCA.key
         mode: 0600
 
     - name: Generate private key
@@ -41,8 +47,8 @@
     - name: Sign the certificate request
       command: >
         openssl x509 -req -in /etc/grid-security/hostcert.csr
-        -CA /etc/grid-security/certificates/DummyCA.crt
-        -CAkey /etc/grid-security/certificates/DummyCA.key
+        -CA /etc/grid-security/certificates/DummyCA.pem
+        -CAkey /etc/grid-security/private/DummyCA.key
         -out /etc/grid-security/hostcert.pem -sha256
         -set_serial {{ 1000000 | random(seed=inventory_hostname) }}
       args:
