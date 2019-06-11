@@ -2,11 +2,11 @@
 - name: Copy CA certificate
   copy:
     src: "{{ grid_dummy_ca.crt }}"
-    dest: /etc/grid-security/certificates/DummyCA.crt
+    dest: /etc/grid-security/certificates/DummyCA.pem
 
 - name: Create link
   file:
-    src: DummyCA.crt
+    src: DummyCA.pem
     dest: "/etc/grid-security/certificates/{{ grid_dummy_ca.hash }}.0"
     state: link
 

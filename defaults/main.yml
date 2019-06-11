@@ -30,3 +30,4 @@ grid_dummy_ca:
   key: DummyCA.key
   hash: be034f91
   cn: /C=AT/ST=Vienna/L=Vienna/O=Austrian Academy of Sciences/OU=Institute of High Energy Physics/CN=
+grid_enable_cleanup: false
