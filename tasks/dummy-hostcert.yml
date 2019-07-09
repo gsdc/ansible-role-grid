@@ -54,4 +54,4 @@
       args:
         creates: /etc/grid-security/hostcert.pem
 
-  when: grid_enable_dummy_hostcert
+  when: grid_dummy_host_certificate != 'caonly'

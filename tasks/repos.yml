@@ -17,7 +17,7 @@
       {% for k in grid_umd_repo_rpmgpgkeys -%}
         file:///etc/pki/rpm-gpg/{{ k }}
       {%- endfor %}
-    priority: "{{ grid_umd_repo_priority }}"
+    priority: "{{ grid_umd_repo_priority | string }}"
     protect: true
 
 - name: Install UMD updates repository
@@ -33,9 +33,8 @@
       {% for k in grid_umd_repo_rpmgpgkeys -%}
         file:///etc/pki/rpm-gpg/{{ k }}
       {%- endfor %}
-    priority: "{{ grid_umd_repo_priority }}"
+    priority: "{{ grid_umd_repo_priority | string }}"
     protect: true
-
 
 - name: Copy gpgkeys
   copy:

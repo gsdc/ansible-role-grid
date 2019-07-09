@@ -30,9 +30,10 @@ List of packages to exclude from updates or installs.
 
 List of packages you want to only use from the UMD repository.
 
-    grid_ca_policies_cvmfs: false
+    grid_enable_certificates: true | false | 'cvmfs'
 
-CA policies can be installed or used from the CVMFS repository grid.cern.ch
+Enable grid certificates. 'cvmfs' implies the usage of certificates
+from the CVMFS repositoru grid.cern.ch
 
     grid_ca_polices_pkgs:
       - ca-policy-egi-core
@@ -40,13 +41,9 @@ CA policies can be installed or used from the CVMFS repository grid.cern.ch
 
 RPMs of CA polices to be installed
 
-    grid_install_fetchcrl: true
-
-fetch-crl is only installed when IGTF trustanchors are requested.
-
     grid_fetchcrl_options: []
 
-Options are passed as a hash. Following keys are possible.
+Options for fetchcrl are passed as a hash. Following keys are possible.
 -   agingtolerance: 24
 -   nosymlinks: true
 -   nowarnings: true
@@ -57,12 +54,6 @@ Options are passed as a hash. Following keys are possible.
 -   logmode: syslog
 
 Details for the parameters see [Nikhef Wiki](https://wiki.nikhef.nl/grid/FetchCRL3)
-
-    grid_install_empty_ca_policy: true
-
-When the trust anchors are taken from _cvmfs_ an empty ca package [empty-ca-policy](https://copr.fedorainfracloud.org/coprs/dliko/empty-ca-policy/) is installed to satisfy the
-rpm dependencies of other packages. A link is enabeling
-the CA packages from cvmfs.
 
     grid_vos: []
 
@@ -92,20 +83,17 @@ Install host certificate. The certificates is provided as hash
 -   key: path to private host key. It should be secured with ansible-vault
 
 
-    grid_enable_dummy_ca: false | true
+    grid_dummy_host_certificate: false | true | 'caonly'
 
-Install an insecure dummy ca certificate for CI.  __Not to be used in production__
-
-    grid_enable_dummy_hostcert: false | true
-
-Install a dummy hostcertificate for CI.  __Not to be used in production__
+Install an insecure dummy host certificate for CI. If 'caonly'
+is requested only the CA will be configured.  __Not to be used in production__
 
     grid_dummy_ca:
       cert: DummyCA.crt
       key: DummyCA.key
       hash: be034f91
 
-Dummy CA distributed with the role. Could be customised.
+Dummy CA distributed with the role.
 
 ## Example Playbook
 
@@ -134,9 +122,9 @@ Configuration for a worker node with CVMFS
               - cms
               - alice
               - belle
-            grid_ca_policies_cvmfs: true
-        - name: hephyvienna.cvmfs
-        - name: hephyvienna.grid-worker
+            grid_enable_certificates: cvmfs
+        - role: hephyvienna.cvmfs
+        - role: hephyvienna.grid_worker
           vars:
             grid_worker_role: wn
 

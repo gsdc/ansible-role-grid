@@ -11,24 +11,21 @@ grid_umd_repo_rpmgpgkeys:
   - 0608B895.txt
 grid_umd_repo_exclude: []
 grid_umd_repo_includepkgs: []
+grid_enable_certificates: true
 grid_ca_policies_cvmfs: false
 grid_ca_polices_pkgs:
   - ca-policy-egi-core
   - ca-policy-lcg
-grid_install_fetchcrl: true
 grid_fetchcrl_options: []
-grid_install_empty_ca_policy: true
 grid_vos: []
 grid_security_dir: /etc/grid-security
 grid_vomses_dir: /etc/vomses
 grid_host_certificate: {}
 grid_voinfo_url: http://cclavoisier01.in2p3.fr:8080/lavoisier/voVoms?accept=json
-grid_enable_dummy_ca: false
-grid_enable_dummy_hostcert: false
+grid_dummy_host_certificate: false
 grid_site_name: Dummy Site
 grid_dummy_ca:
   crt: DummyCA.crt
   key: DummyCA.key
   hash: be034f91
   cn: /C=AT/ST=Vienna/L=Vienna/O=Austrian Academy of Sciences/OU=Institute of High Energy Physics/CN=
-grid_enable_cleanup: false

@@ -7,25 +7,30 @@
   include_tasks: repos.yml
   when: grid_enable_repo
 
-- name: Install ca_policy
-  include_tasks: ca-policy.yml
-  when: not grid_ca_policies_cvmfs
+- name: Configure certificates
+  block:
 
-- name: Install fetch-crl
-  include_tasks: fetch-crl.yml
-  when: not grid_ca_policies_cvmfs and grid_install_fetchcrl
+    - name: Install ca_policy
+      include_tasks: ca-policy.yml
+      when: grid_enable_certificates != 'cvmfs'
 
-- name: Install empty CA policies
-  include_tasks: empty-ca-policy.yml
-  when: grid_ca_policies_cvmfs and grid_install_dummy_ca_policy
+    - name: Install fetch-crl
+      include_tasks: fetch-crl.yml
+      when: grid_enable_certificates != 'cvmfs'
 
-- name: Install VOMS
-  include_tasks: voms.yml
+    - name: Install empty CA policies
+      include_tasks: empty-ca-policy.yml
+      when: grid_enable_certificates == 'cvmfs'
 
-- name: Install host certificate
-  include_tasks: hostcert.yml
-  when: grid_host_certificate | length > 0
+    - name: Install VOMS
+      include_tasks: voms.yml
 
-- name: Install dummy CA
-  include_tasks: dummy-ca.yml
-  when: grid_enable_dummy_ca
+    - name: Install host certificate
+      include_tasks: hostcert.yml
+      when: grid_host_certificate | length > 0
+
+    - name: Install dummy hostcert
+      include_tasks: dummy-hostcert.yml
+      when: grid_dummy_host_certificate
+
+  when: grid_enable_certificates

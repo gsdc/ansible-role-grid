@@ -1,9 +1,6 @@
 ---
 dependency:
   name: galaxy
-  # FIXME for MacOSX
-  options:
-    ignore-certs: true
 driver:
   name: docker
 lint:
@@ -18,7 +15,7 @@ provisioner:
 verifier:
   name: testinfra
   options:
-    # FIXME: another workaround for python issue of molecule
+    # FIXME
     W: ignore::DeprecationWarning
     junit-xml: junit.xml
   lint:
