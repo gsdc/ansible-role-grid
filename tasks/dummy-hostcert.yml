@@ -39,7 +39,7 @@
       command: >
         openssl req -new -sha256
         -key /etc/grid-security/hostkey.pem
-        -subj "{{ grid_dummy_ca.cn + ansible_fqdn }}"
+        -subj "{{ grid_dummy_ca.cn }}host\/{{ ansible_fqdn }}"
         -out /etc/grid-security/hostcert.csr
       args:
         creates: /etc/grid-security/hostcert.csr
