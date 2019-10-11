@@ -33,7 +33,7 @@
     - name: Set the mode of the private key
       file:
         path: /etc/grid-security/hostkey.pem
-        mode: 0644
+        mode: 0400
 
     - name: Generate certificate request
       command: >
