@@ -1,21 +1,14 @@
 ---
 # defaults file for hephyvienna.role-grid
 grid_enable_repo: true
-grid_umd_version: 4
-grid_umd_repo_priority: 10
-grid_umd_repo_rpmgpgkeys:
-  - RPM-GPG-KEY-emi
-  - UMD-RPM-PGP-KEY
-  - RPM-GPG-KEY-QCG
-  - RPM-GPG-KEY-nordugrid
-  - 0608B895.txt
-grid_umd_repo_exclude: []
-grid_umd_repo_includepkgs: []
+grid_osg_version: 3.6
+grid_osg_repo_priority: 10
 grid_enable_certificates: true
 grid_ca_policies_cvmfs: false
 grid_ca_polices_pkgs:
-  - ca-policy-egi-core
-  - ca-policy-lcg
+  - osg-ca-certs
+  - ca-certificates
+  - vo-client
 grid_fetchcrl_options: []
 grid_vos: []
 grid_security_dir: /etc/grid-security
