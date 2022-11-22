@@ -1,16 +1,15 @@
 ---
 galaxy_info:
   role_name: grid
-  author: Dietrich Liko
+  author: Geonmo Ryu
   description: Common installation of repositories, certificates and voms for WLCG/LCG site.
-  company: Institute for High Energy Physics, Austrian Academy of Sciences
-  issue_tracker_url: https://gitlab.cern.ch/hephyvienna/ansible/role-grid/issues
+  company: KISTI
   license: MIT
   min_ansible_version: 2.7
   platforms:
     - name: EL
       versions:
-        - 6
         - 7
+        - 8
   galaxy_tags: []
 dependencies: []
