@@ -1,7 +1,7 @@
 ---
 - name: Install yum priorities
   package:
-    name: yum-priorities
+    name: yum-plugin-priorities
     state: present
 
 - name: Install OSG repository
