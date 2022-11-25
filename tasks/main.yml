@@ -31,10 +31,12 @@
   user:
     name: "{{ itme }}pilot"
     state: presnet
-  user:
+  loops: "{{ grid_vos }}"
+- user:
     name: "{{ itme }}lcgadmin"
     state: presnet
-  user:
+  loops: "{{ grid_vos }}"
+- user:
     name: "{{ itme }}local"
     state: presnet
   loops: "{{ grid_vos }}"
