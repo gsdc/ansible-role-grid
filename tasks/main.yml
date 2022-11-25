@@ -25,5 +25,17 @@
     - name: Install dummy hostcert
       include_tasks: dummy-hostcert.yml
       when: grid_dummy_host_certificate
-
   when: grid_enable_certificates
+    
+- name: Create Grid users
+  user:
+    name: "{{ itme }}pilot"
+    state: presnet
+  user:
+    name: "{{ itme }}lcgadmin"
+    state: presnet
+  user:
+    name: "{{ itme }}local"
+    state: presnet
+  loop: grid_vos
+
