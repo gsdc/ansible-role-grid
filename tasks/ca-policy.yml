@@ -3,10 +3,10 @@
   package:
     name: "{{ grid_ca_polices_pkgs.osg }}"
     state: latest
-  when: "{{ grid_middleware | mandatory }}" == "OSG"
+  when: grid_middleware == "OSG"
 
 - name: Install CAs on UMD
   package:
     name: "{{ grid_ca_polices_pkgs.umd }}"
     state: latest
-  when: "{{ grid_middleware | mandatory }}" == "UMD"
+  when: grid_middleware == "UMD"
