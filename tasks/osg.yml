@@ -1,0 +1,6 @@
+---
+- name: Install OSG repository
+  yum: 
+    name: "https://repo.opensciencegrid.org/osg/{{ grid_osg_version }}/osg-{{ grid_osg_version }}-el{{ ansible_distribution_major_version }}-release-latest.rpm"
+    state: latest
+    disable_gpg_check: yes
