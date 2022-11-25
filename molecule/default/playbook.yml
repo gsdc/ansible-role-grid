@@ -9,10 +9,6 @@
         state: present
 
   roles:
-    - role: hephyvienna.grid
+    - role: geonmo.grid
       vars:
-        grid_vos:
-          - cms
-          - alice
-          - belle
         grid_dummy_host_certificate: true

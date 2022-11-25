@@ -1,6 +1,6 @@
 ---
 # tasks file for hephyvienna.role-grid
-- name: Configure OSG repo
+- name: Configure Middleware repo
   include_tasks: repos.yml
   when: grid_enable_repo
 

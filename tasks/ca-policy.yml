@@ -1,5 +1,12 @@
 ---
-- name: Install CAs
+- name: Install CAs on OSG
   package:
-    name: "{{ grid_ca_polices_pkgs }}"
-    state: present
+    name: "{{ grid_ca_polices_pkgs.osg }}"
+    state: latest
+  when: "{{ grid_middleware | mandatory }}" == "OSG"
+
+- name: Install CAs on UMD
+  package:
+    name: "{{ grid_ca_polices_pkgs.umd }}"
+    state: latest
+  when: "{{ grid_middleware | mandatory }}" == "UMD"

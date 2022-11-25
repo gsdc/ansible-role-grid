@@ -1,16 +1,20 @@
 ---
 # defaults file for hephyvienna.role-grid
+#grid_middleware: 
 grid_enable_repo: true
 grid_osg_version: 3.6
 grid_osg_repo_priority: 10
 grid_enable_certificates: true
 grid_ca_policies_cvmfs: false
 grid_ca_polices_pkgs:
-  - osg-ca-certs
-  - ca-certificates
-  - vo-client
+  osg:
+    - osg-ca-certs
+    - ca-certificates
+    - vo-client
+  umd:
+    - ca-polcy-egi-core 
+    - ca-policy-lcg
 grid_fetchcrl_options: []
-grid_vos: []
 grid_security_dir: /etc/grid-security
 grid_vomses_dir: /etc/vomses
 grid_host_certificate: {}
