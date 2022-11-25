@@ -28,16 +28,16 @@
   when: grid_enable_certificates
     
 - name: Create Grid users
-  user:
-    name: "{{ itme }}pilot"
-    state: presnet
-  loops: "{{ grid_vos }}"
-- user:
-    name: "{{ itme }}lcgadmin"
-    state: presnet
-  loops: "{{ grid_vos }}"
-- user:
-    name: "{{ itme }}local"
-    state: presnet
-  loops: "{{ grid_vos }}"
-
+  block:
+    - user:
+        name: "{{ itme }}pilot"
+        state: presnet
+      loop: "{{ grid_vos }}"
+    - user:
+        name: "{{ itme }}lcgadmin"
+        state: presnet
+      loop: "{{ grid_vos }}"
+    - user:
+        name: "{{ itme }}local"
+        state: presnet
+      loop: "{{ grid_vos }}"
