@@ -30,14 +30,14 @@
 - name: Create Grid users
   block:
     - user:
-        name: "{{ itme }}pilot"
+        name: "{{ item }}pilot"
         state: presnet
       loop: "{{ grid_vos }}"
     - user:
-        name: "{{ itme }}lcgadmin"
+        name: "{{ item }}lcgadmin"
         state: presnet
       loop: "{{ grid_vos }}"
     - user:
-        name: "{{ itme }}local"
+        name: "{{ item }}local"
         state: presnet
       loop: "{{ grid_vos }}"
