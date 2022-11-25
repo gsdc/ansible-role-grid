@@ -37,5 +37,5 @@
   user:
     name: "{{ itme }}local"
     state: presnet
-  loop: grid_vos
+  loops: "{{ grid_vos }}"
 
