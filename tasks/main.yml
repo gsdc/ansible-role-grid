@@ -31,13 +31,13 @@
   block:
     - user:
         name: "{{ item }}pilot"
-        state: presnet
+        state: present
       loop: "{{ grid_vos }}"
     - user:
         name: "{{ item }}lcgadmin"
-        state: presnet
+        state: present
       loop: "{{ grid_vos }}"
     - user:
         name: "{{ item }}local"
-        state: presnet
+        state: present
       loop: "{{ grid_vos }}"
