@@ -16,7 +16,6 @@ grid_ca_polices_pkgs:
     - ca-policy-lcg
 grid_fetchcrl_options: []
 grid_security_dir: /etc/grid-security
-grid_vomses_dir: /etc/vomses
 grid_host_certificate: {}
 grid_voinfo_url: http://cclavoisier01.in2p3.fr:8080/lavoisier/voVoms?accept=json
 grid_dummy_host_certificate: false
