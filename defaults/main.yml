@@ -22,7 +22,10 @@ grid_voinfo_url: http://cclavoisier01.in2p3.fr:8080/lavoisier/voVoms?accept=json
 grid_dummy_host_certificate: false
 grid_site_name: Dummy Site
 grid_dummy_ca:
-  crt: DummyCA.crt
-  key: DummyCA.key
-  hash: be034f91
-  cn: /C=AT/ST=Vienna/L=Vienna/O=Austrian Academy of Sciences/OU=Institute of High Energy Physics/CN=
+  crt: dummy/CA.crt
+  key: dummy/CA.key
+  hash: 19d25ae9
+  cn: /C=KR/O=KISTI/O=GSDC/O=Dummy CA/CN=
+ca_info:
+  cn: /C=KR/O=KISTI/O=GSDC/CN=Dummy CA
+  target: /C=KR/O=KISTI/O=GSDC/*

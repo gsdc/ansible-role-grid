@@ -53,5 +53,9 @@
         -set_serial {{ 1000000 | random(seed=inventory_hostname) }}
       args:
         creates: /etc/grid-security/hostcert.pem
-
+   
+    - name: Copy singed 
+      template:
+        src: templates/dummy.signing_policy.j2
+        dest: "/etc/grid-security/certificates/{{ grid_dummy_ca.hash }}.signing_policy"
   when: grid_dummy_host_certificate != 'caonly'
