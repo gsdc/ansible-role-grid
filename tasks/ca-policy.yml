@@ -6,7 +6,14 @@
   when: grid_middleware == "OSG"
 
 - name: Install CAs on UMD
-  package:
-    name: "{{ grid_ca_polices_pkgs.umd }}"
-    state: latest
+  block:
+    - name: Install CA policy packages for UMD
+      package:
+        name: "{{ grid_ca_polices_pkgs.umd }}"
+        state: latest
+    - debug:
+        msg: 
+          - "UMD middleware did not provide .lsc files on /etc/grid-security/vomsdir/"
+          - "You need to install or add .lsc file manually (or use OSG's vo-clients)."
+          - "For WLCG VOs, you can use RPM file at http://linuxsoft.cern.ch/wlcg/centos{{ ansible_distribution_major_version }}/x86_64/"
   when: grid_middleware == "UMD"
