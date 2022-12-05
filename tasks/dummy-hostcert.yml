@@ -1,4 +1,13 @@
 ---
+- name: Generate CA CERT and KEY
+  block:
+    - shell: "openssl ecparam -genkey -name prime256v1 -out {{ ca_info.caname }}.key"
+    - file:
+        name: "{{ grid_dummy_ca.key }}"
+        mode: 0600
+    - shell: "openssl req -new -nodes -sha384 -key {{ ca_info.caname }}.key -subj {{ ca_info.cn }} -out {{ ca_info.caname }}.csr"
+    - shell: "openssl req -new -x509 -sha384 -set_serial 1 -days 3 -key {{ ca_info.caname }}.key -subj {{ ca_info.cn }} -out {{ ca_info.caname }}.crt"
+
 - name: Copy CA certificate
   copy:
     src: "{{ grid_dummy_ca.crt }}"
