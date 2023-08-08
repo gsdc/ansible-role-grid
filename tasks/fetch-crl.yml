@@ -13,3 +13,4 @@
   command: /usr/sbin/fetch-crl
   changed_when: false
   ignore_errors: true
+  when: run_fetchcrl
