@@ -4,18 +4,19 @@
     - shell: "openssl ecparam -genkey -name prime256v1 -out {{ ca_info.caname }}.key"
     - shell: "openssl req -new -nodes -sha384 -key {{ ca_info.caname }}.key -subj \"{{ ca_info.cn }}\" -out {{ ca_info.caname }}.csr"
     - shell: "openssl req -new -x509 -sha384 -set_serial 1 -days 3 -key {{ ca_info.caname }}.key -subj \"{{ ca_info.cn }}\" -out {{ ca_info.caname }}.crt"
-
-- name: Copy CA certificate
-  copy:
-    src: "{{ grid_dummy_ca.crt }}"
-    dest: "/etc/grid-security/certificates/{{ ca_info.caname }}.pem"
-
-- name: Create link
-  file:
-    src:  "/etc/grid-security/certificates/{{ ca_info.caname }}.pem"
-    dest: "/etc/grid-security/certificates/{{ grid_dummy_ca.hash }}.0"
-    state: link
-
+    - name: Copy CA certificate
+      copy:
+        src: "{{ grid_dummy_ca.crt }}"
+        dest: "/etc/grid-security/certificates/{{ ca_info.caname }}.pem"
+    - name: Calculate hash
+      shell: openssl x509 -noout -in CA.crt -hash
+      register: ca_hash
+    - name: Create link
+      file:
+        src:  "/etc/grid-security/certificates/{{ ca_info.caname }}.pem"
+        dest: "/etc/grid-security/certificates/{{ ca_hash.stdout }}.0"
+        state: link
+  when: generate_grid_dummy_ca
 - name: Generate dummy hostcertificate
   block:
 
@@ -63,5 +64,5 @@
     - name: Copy singed 
       template:
         src: templates/dummy.signing_policy.j2
-        dest: "/etc/grid-security/certificates/{{ grid_dummy_ca.hash }}.signing_policy"
-  when: grid_dummy_host_certificate != 'caonly'
+        dest: "/etc/grid-security/certificates/{{ ca_hash.stdout }}.signing_policy"
+  when: generate_grid_dummy_host_certificate 

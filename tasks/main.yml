@@ -24,7 +24,7 @@
 
     - name: Install dummy hostcert
       include_tasks: dummy-hostcert.yml
-      when: grid_dummy_host_certificate
+      when: generate_grid_dummy_ca or generate_grid_dummy_host_certificate
   when: grid_enable_certificates
     
 - name: Create Grid users

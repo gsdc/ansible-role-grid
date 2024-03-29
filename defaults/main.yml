@@ -19,7 +19,8 @@ run_fetchcrl: true
 grid_security_dir: /etc/grid-security
 grid_host_certificate: {}
 grid_voinfo_url: http://cclavoisier01.in2p3.fr:8080/lavoisier/voVoms?accept=json
-grid_dummy_host_certificate: false
+generate_grid_dummy_ca: false
+generate_grid_dummy_host_certificate: false
 grid_site_name: Dummy Site
 grid_dummy_ca:
   crt: "{{ ca_info.caname }}.crt"
