@@ -19,6 +19,9 @@
   when: generate_grid_dummy_ca
 - name: Generate dummy hostcertificate
   block:
+    - name: Calculate hash
+      shell: "openssl x509 -noout -in /etc/grid-security/certificates/{{ ca_info.caname }}.pem -hash"
+      register: ca_hash
 
     - name: Create private dir
       file:
