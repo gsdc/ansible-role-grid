@@ -21,13 +21,13 @@ grid_host_certificate: {}
 grid_voinfo_url: http://cclavoisier01.in2p3.fr:8080/lavoisier/voVoms?accept=json
 generate_grid_dummy_ca: false
 generate_grid_dummy_host_certificate: false
-grid_site_name: Dummy Site
+grid_site_name: TEST-DUMMY
 grid_dummy_ca:
   crt: "{{ ca_info.caname }}.crt"
   key: "{{ ca_info.caname }}.key"
-  hash: 19d25ae9
-  cn: /C=KR/O=KISTI/O=GSDC/O=Dummy CA/CN=
+  cn: /C=KR/O=TEST/O=TEST Certification Authority
 ca_info:
-  caname: CA
-  cn: /C=KR/O=KISTI/O=GSDC/CN=Dummy CA
-  target: /C=KR/O=KISTI/O=GSDC/*
+  caname: "CA"
+  cn: /C=KR/O=TEST/O=TEST Certification Authority
+  target: /C=KR/O=TEST/O=GSDC/CN=
+

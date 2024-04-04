@@ -11,10 +11,20 @@
     - name: Calculate hash
       shell: openssl x509 -noout -in CA.crt -hash
       register: ca_hash
+
     - name: Create link
       file:
         src:  "/etc/grid-security/certificates/{{ ca_info.caname }}.pem"
         dest: "/etc/grid-security/certificates/{{ ca_hash.stdout }}.0"
+        state: link
+    - name: Copy signing_policy 
+      template:
+        src: templates/dummy.signing_policy.j2
+        dest: "/etc/grid-security/certificates/{{ ca_info.caname }}.signing_policy"
+    - name: Create link for signing_polocy
+      file:
+        src:  "/etc/grid-security/certificates/{{ ca_info.caname }}.signing_policy"
+        dest: "/etc/grid-security/certificates/{{ ca_hash.stdout }}.signing_policy"
         state: link
   when: generate_grid_dummy_ca
 - name: Generate dummy hostcertificate
@@ -49,7 +59,7 @@
       command: >
         openssl req -new -sha256
         -key /etc/grid-security/hostkey.pem
-        -subj "{{ grid_dummy_ca.cn }}host\/{{ ansible_fqdn }}"
+        -subj "{{ ca_info.target }}{{ ansible_fqdn }}"
         -out /etc/grid-security/hostcert.csr
       args:
         creates: /etc/grid-security/hostcert.csr
@@ -64,8 +74,4 @@
       args:
         creates: /etc/grid-security/hostcert.pem
    
-    - name: Copy singed 
-      template:
-        src: templates/dummy.signing_policy.j2
-        dest: "/etc/grid-security/certificates/{{ ca_hash.stdout }}.signing_policy"
   when: generate_grid_dummy_host_certificate 
