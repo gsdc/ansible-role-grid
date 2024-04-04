@@ -9,7 +9,7 @@
         src: "{{ grid_dummy_ca.crt }}"
         dest: "/etc/grid-security/certificates/{{ ca_info.caname }}.pem"
     - name: Calculate hash
-      shell: openssl x509 -noout -in CA.crt -hash
+      shell: "openssl x509 -noout -in /etc/grid-security/certificates/{{ ca_info.caname }}.pem -hash"
       register: ca_hash
 
     - name: Create link
