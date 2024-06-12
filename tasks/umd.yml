@@ -9,3 +9,14 @@
   fail: 
     msg: UMD middleware support EL7 only.
   when: ansible_distribution_major_version != "7"
+- name: Install EGI TrustAnchors for CA
+  copy:
+    dest: /etc/yum.repos.d/EGI-trustanchors.repo
+    content: |
+      [EGI-trustanchors]
+      name=EGI-trustanchors
+      baseurl=https://repository.egi.eu/sw/production/cas/1/current/
+      gpgkey=https://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-3
+      gpgcheck=1
+      enabled=1
+
