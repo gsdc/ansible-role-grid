@@ -14,3 +14,9 @@
   changed_when: false
   ignore_errors: true
   when: run_fetchcrl
+
+- name: Start timer for fetch-crl
+  systemd_service:
+    name: fetch-crl.timer
+    state: started
+    enabled: true
