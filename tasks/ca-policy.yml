@@ -23,16 +23,16 @@
     - name: Install wlcg-voms packages
       yum:
         name: "wlcg-voms-{{ item }}"
-      with_items: grid_vos
+      with_items: "{{ grid_vos }}"
       ignore_errors: true
     - name: Install wlcg-iam-vomses packages
       yum:
         name: "wlcg-iam-vomses-{{ item }}"
-      with_items: grid_vos
+      with_items: "{{ grid_vos }}"
       ignore_errors: true
     - name: Install wlcg-iam-lsc packages
       yum:
         name: "wlcg-iam-lsc-{{ item }}"
-      with_items: grid_vos
+      with_items: "{{ grid_vos }}"
       ignore_errors: true
   when: grid_middleware == "UMD"
