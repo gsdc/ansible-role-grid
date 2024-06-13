@@ -11,9 +11,19 @@
       package:
         name: "{{ grid_ca_polices_pkgs.umd }}"
         state: latest
-    - debug:
-        msg: 
-          - "UMD middleware did not provide .lsc files on /etc/grid-security/vomsdir/"
-          - "You need to install or add .lsc file manually (or use OSG's vo-clients)."
-          - "For WLCG VOs, you can use RPM file at http://linuxsoft.cern.ch/wlcg/centos{{ ansible_distribution_major_version }}/x86_64/"
+    - yum:
+        name: "https://linuxsoft.cern.ch/wlcg/el9/x86_64/wlcg-repo-1.0.0-1.el9.noarch.rpm"
+        state: present
+    - yum:
+        name: "wlcg-voms-{{ item }}"
+      with_items: grid_vos
+      ignore_errors: true
+    - yum:
+        name: "wlcg-iam-vomses-{{ item }}"
+      with_items: grid_vos
+      ignore_errors: true
+    - yum:
+        name: "wlcg-iam-lsc-{{ item }}"
+      with_items: grid_vos
+      ignore_errors: true
   when: grid_middleware == "UMD"
