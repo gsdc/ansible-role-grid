@@ -41,3 +41,7 @@
         name: "{{ item }}local"
         state: present
       loop: "{{ grid_vos }}"
+    - user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ grid_users }}"
