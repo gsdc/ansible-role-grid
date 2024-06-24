@@ -2,7 +2,7 @@
 # defaults file for hephyvienna.role-grid
 grid_middleware: "OSG" 
 grid_enable_repo: true
-grid_osg_version: 3.6
+grid_osg_version: "23-main"
 grid_osg_repo_priority: 10
 grid_enable_certificates: true
 grid_ca_policies_cvmfs: false

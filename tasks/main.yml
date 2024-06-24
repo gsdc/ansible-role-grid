@@ -30,18 +30,6 @@
 - name: Create Grid users
   block:
     - user:
-        name: "{{ item }}pilot"
-        state: present
-      loop: "{{ grid_vos }}"
-    - user:
-        name: "{{ item }}lcgadmin"
-        state: present
-      loop: "{{ grid_vos }}"
-    - user:
-        name: "{{ item }}local"
-        state: present
-      loop: "{{ grid_vos }}"
-    - user:
         name: "{{ item }}"
         state: present
       loop: "{{ grid_users }}"
