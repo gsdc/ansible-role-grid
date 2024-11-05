@@ -1,10 +1,16 @@
 ---
-- name: Install UMD repository
+- name: Install UMD repository for CentOS7
   yum: 
     name: "http://repository.egi.eu/sw/production/umd/4/centos7/x86_64/updates/umd-release-4.1.3-1.el7.centos.noarch.rpm"
     state: latest
     disable_gpg_check: yes
   when: ansible_distribution_major_version == "7"
+- name: Install UMD repository for Almalinux 9
+  dnf: 
+    name: "https://repository.egi.eu/sw/production/umd/5/al9/release/x86_64/umd-release-5.0.0-1.al9.alma.noarch.rpm"
+    state: latest
+    disable_gpg_check: yes
+  when: (ansible_distribution_major_version == "9" && ansible_distribution == "AlmaLinux")
 - name: Install EGI TrustAnchors for CA
   copy:
     dest: /etc/yum.repos.d/EGI-trustanchors.repo
