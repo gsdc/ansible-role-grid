@@ -35,7 +35,7 @@
       [EGI-trustanchors]
       name=EGI-trustanchors
       baseurl=https://repository.egi.eu/sw/production/cas/1/current/
-      gpgkey=https://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-3
+      gpgkey=https://repository.egi.eu/sw/production/cas/1/GPG-KEY-EUGridPMA-RPM-4
       gpgcheck=1
       enabled=1
 
