@@ -32,4 +32,5 @@
     - user:
         name: "{{ item }}"
         state: present
+        shell: "/sbin/nologin"
       loop: "{{ grid_users }}"
