@@ -15,8 +15,18 @@
   ignore_errors: true
   when: run_fetchcrl
 
-- name: Start timer for fetch-crl
+- name: Start timer for fetch-crl (systemd)
   systemd_service:
     name: fetch-crl.timer
     state: started
     enabled: true
+  when:
+    - ansible_facts.service_mgr == "systemd"
+- name: Start timer for fetch-crl (cron)
+  cron:
+    name: fetch-crl
+    job: "/usr/sbin/fetch-crl"
+    minute: "0"
+    hour: "*/6"
+  when:
+    - ansible_facts.service_mgr != "systemd"
