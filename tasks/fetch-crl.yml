@@ -1,4 +1,8 @@
 ---
+- name: systemd가 실행 중인지 확인
+  set_fact:
+    is_systemd_running: "{{ (ansible_facts.proc_1_comm | default('')) == 'systemd' }}"
+
 - name: Install fetch-crl
   package:
     name: fetch-crl
@@ -20,13 +24,11 @@
     name: fetch-crl.timer
     state: started
     enabled: true
-  when:
-    - ansible_facts.service_mgr == "systemd"
+  when: is_systemd_running
 - name: Start timer for fetch-crl (cron)
   cron:
     name: fetch-crl
     job: "/usr/sbin/fetch-crl"
     minute: "0"
     hour: "*/6"
-  when:
-    - ansible_facts.service_mgr != "systemd"
+  when: not is_systemd_running
