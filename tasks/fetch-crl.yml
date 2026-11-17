@@ -1,7 +1,14 @@
 ---
+# systemd 로 부팅된 시스템인지 (/run/systemd/system 존재, sd_booted 와 같은 기준).
+# 예전에는 ansible_facts.proc_1_comm 을 봤는데 이 fact 는 존재하지 않아서 항상 false 였고,
+# 실제 서버에서도 늘 cron 경로를 탔다. service_mgr fact 는 컨테이너에서도 systemd 로 나와 쓸 수 없다.
 - name: systemd가 실행 중인지 확인
-  set_fact:
-    is_systemd_running: "{{ (ansible_facts.proc_1_comm | default('')) == 'systemd' }}"
+  stat:
+    path: /run/systemd/system
+  register: run_systemd_dir
+
+- set_fact:
+    is_systemd_running: "{{ run_systemd_dir.stat.isdir | default(false) }}"
 
 - name: Install fetch-crl
   package:
@@ -25,6 +32,19 @@
     state: started
     enabled: true
   when: is_systemd_running
+# 예전 버전이 systemd 서버에도 넣어 둔 cron 항목 제거 (timer 와 두 번 돌지 않게)
+- name: crontab 이 있는지
+  stat:
+    path: /usr/bin/crontab
+  register: crontab_bin
+  when: is_systemd_running
+- name: Remove fetch-crl cron entry on systemd hosts
+  cron:
+    name: fetch-crl
+    state: absent
+  when:
+    - is_systemd_running
+    - crontab_bin.stat.exists | default(false)
 - name: Start timer for fetch-crl (cron)
   cron:
     name: fetch-crl
